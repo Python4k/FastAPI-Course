@@ -18,6 +18,24 @@ class BaseController:
             result = await session.execute(query)
             return result.scalars().all()
         
+
+    @classmethod
+    async def get_all_by_filter(cls, **kwargs):
+        """
+        Retrieves records from the database table associated with the
+        model defined in the controller based on the given keyword arguments.
+
+        Args:
+            **kwargs: Keyword arguments specifying the values to filter the records by.
+
+        Returns:
+            A list of records that match the given keyword arguments.
+        """
+        async with async_session() as session:
+            query = select(cls.model).filter_by(**kwargs)
+            result = await session.execute(query)
+            return result.scalars().all()
+        
     @classmethod
     async def get_by_id(cls, id):
         """
