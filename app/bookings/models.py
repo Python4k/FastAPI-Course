@@ -1,6 +1,5 @@
-from app.database import Base
-from sqlalchemy import JSON, Column, Computed, ForeignKey, Integer, String, Date
-from datetime import date
+from app.database.models import Base
+from sqlalchemy import Column, Computed, ForeignKey, Integer, Date
 
 
 class Booking(Base):

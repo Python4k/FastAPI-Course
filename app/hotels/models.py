@@ -1,4 +1,4 @@
-from app.database import Base
+from app.database.models import Base
 from sqlalchemy import JSON, Column, Integer, String, ForeignKey
 from datetime import date
 
