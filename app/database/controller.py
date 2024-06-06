@@ -88,3 +88,22 @@ class BaseController:
             await session.execute(query)
             await session.commit()
 
+    @classmethod
+    async def delete(cls, id):
+        """
+        Deletes a record from the database table associated with the
+        model defined in the controller based on the given id.
+
+        Args:
+            id (int): The id of the record to delete.
+
+        Returns:
+            None
+        """
+        async with async_session() as session:
+            query = select(cls.model).where(cls.model.id == id)
+            result = await session.execute(query)
+            record = result.scalar_one_or_none()
+            if record:
+                await session.delete(record)
+                await session.commit()
